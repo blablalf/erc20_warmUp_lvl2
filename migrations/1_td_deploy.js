@@ -2,13 +2,15 @@
 var TDErc20 = artifacts.require("ERC20TD.sol");
 var ERC20Claimable = artifacts.require("ERC20Claimable.sol");
 var evaluator = artifacts.require("Evaluator.sol");
+var ExerciceSolution = artifacts.require("ExerciceSolution.sol");
 
 
 module.exports = (deployer, network, accounts) => {
     deployer.then(async () => {
         await deployTDToken(deployer, network, accounts); 
         await deployEvaluator(deployer, network, accounts); 
-        await setPermissionsAndRandomValues(deployer, network, accounts); 
+        await setPermissionsAndRandomValues(deployer, network, accounts);
+		await deployExerciceSolution(deployer, network, accounts); 
         await deployRecap(deployer, network, accounts); 
     });
 };
@@ -26,10 +28,15 @@ async function setPermissionsAndRandomValues(deployer, network, accounts) {
 	await TDToken.setTeacher(Evaluator.address, true)
 }
 
+async function deployExerciceSolution(deployer, network, accounts) {
+	ExerciceSolution = await ExerciceSolution.new(ClaimableToken.address);
+}
+
 async function deployRecap(deployer, network, accounts) {
 	console.log("TDToken " + TDToken.address)
 	console.log("ClaimableToken " + ClaimableToken.address)
 	console.log("Evaluator " + Evaluator.address)
+	console.log("ExerciceSolution " + ExerciceSolution.address)
 }
 
 
