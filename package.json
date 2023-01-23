@@ -6,6 +6,7 @@
     "truffle-plugin-verify": "^0.5.33"
   },
   "dependencies": {
+    "@openzeppelin/contracts-ethereum-package": "^3.0.0",
     "solc": "^0.8.17"
   }
 }

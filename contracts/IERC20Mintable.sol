@@ -6,7 +6,7 @@ interface IERC20Mintable is IERC20
 
 	function setMinter(address minterAddress, bool isMinter)  external;
 
-	function mint(address toAddress, uint256 amount)  external;
+	function mint(address toAddress, uint256 amount) external;
 
 	function isMinter(address minterAddress) external returns (bool);
 }
