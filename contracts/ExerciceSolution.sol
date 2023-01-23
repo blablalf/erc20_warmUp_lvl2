@@ -29,7 +29,9 @@ contract ExerciceSolution is IExerciceSolution
     } 
 
 	function depositTokens(uint256 amountToWithdraw) external override(IExerciceSolution) returns (uint256) {
-        return 0;
+        claimableERC20.transferFrom(msg.sender, address(this), amountToWithdraw);
+        balance[msg.sender] += amountToWithdraw;
+        return balance[msg.sender];
     }
 
 	function getERC20DepositAddress() external override(IExerciceSolution) returns (address) {
