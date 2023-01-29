@@ -27,7 +27,7 @@ contract ExerciceSolution is IExerciceSolution, Ownable {
         claimableERC20.transfer(msg.sender, amountToWithdraw);
         balance[msg.sender] -= amountToWithdraw;
         if (address(exerciceSolutionToken) != address(0)) { // so exerciceSolutionToken is defined
-            require(exerciceSolutionToken.isBurner(address(this)), "Not available to mint you EST"); //should be like this but incompatible with simple workshop execution
+            require(exerciceSolutionToken.isBurner(address(this)), "Not available to mint you EST");
             exerciceSolutionToken.burnFrom(msg.sender, amountToWithdraw);
         }
         return balance[msg.sender];
@@ -37,7 +37,7 @@ contract ExerciceSolution is IExerciceSolution, Ownable {
         claimableERC20.transferFrom(msg.sender, address(this), amountToDeposit);
         balance[msg.sender] += amountToDeposit;
         if (address(exerciceSolutionToken) != address(0)) { // so exerciceSolutionToken is defined
-            require(exerciceSolutionToken.isMinter(address(this)), "Not available to mint you EST"); //should be like this but incompatible with simple workshop execution
+            require(exerciceSolutionToken.isMinter(address(this)), "Not available to mint you EST");
             exerciceSolutionToken.mint(msg.sender, amountToDeposit);
         }
         return balance[msg.sender];

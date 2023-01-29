@@ -21,7 +21,7 @@ module.exports = (deployer, network, accounts) => {
 
         // Display balance
         myBalance = await ClaimableToken.balanceOf(accounts[0]);
-	    console.log("My balance exercice 1 - ex1_claimedPoints() part - " + myBalance);
+        console.log("My balance exercice 1 - ex1_claimedPoints() part - " + myBalance);
 
         /////// Exercice 2: Claim from contract ///////
         // Deploy ExerciceSolution
@@ -32,55 +32,56 @@ module.exports = (deployer, network, accounts) => {
         await Evaluator.ex2_claimedFromContract();
         // Display balance
         myBalance = await TDToken.balanceOf(accounts[0]);
-	    console.log("My balance exercice 2 " + myBalance);
+        console.log("My balance exercice 2 " + myBalance);
 
         /////// Exercice 3: Withdraw From Contract ///////
         await Evaluator.ex3_withdrawFromContract();
         // Display balance
         myBalance = await TDToken.balanceOf(accounts[0]);
-	    console.log("My balance exercice 3 " + myBalance);
+        console.log("My balance exercice 3 " + myBalance);
 
         /////// Exercice 4: Approved Exercice Solution ///////
         await ClaimableToken.approve(ExerciceSolution.address, myBalance);
         await Evaluator.ex4_approvedExerciceSolution();
         // Display balance
         myBalance = await TDToken.balanceOf(accounts[0])
-	    console.log("My balance exercice 4 " + myBalance);
+        console.log("My balance exercice 4 " + myBalance);
 
         /////// Exercice 5: Revoked Exercice Solution ///////
         await ClaimableToken.approve(ExerciceSolution.address, 0);
         await Evaluator.ex5_revokedExerciceSolution();
         // Display balance
         myBalance = await TDToken.balanceOf(accounts[0])
-	    console.log("My balance exercice 5 " + myBalance);
+        console.log("My balance exercice 5 " + myBalance);
 
         /////// Exercice 6: Deposit Tokens ///////
         await Evaluator.ex6_depositTokens();
         // Display balance
         myBalance = await TDToken.balanceOf(accounts[0])
-	    console.log("My balance exercice 6 " + myBalance);
+        console.log("My balance exercice 6 " + myBalance);
 
         /////// Exercice 7: Create ERC20 ///////
         ExerciceSolutionToken = await ExerciceSolutionToken.new();
+        await ExerciceSolution.setERC20DepositAddress(ExerciceSolutionToken.address);
         await ExerciceSolutionToken.setMinter(ExerciceSolution.address, true);
         await Evaluator.ex7_createERC20();
         // Display balance
-        myBalance = await TDToken.balanceOf(accounts[0])
-	    console.log("My balance exercice 7 " + myBalance);
+        myBalance = await TDToken.balanceOf(accounts[0]);
+        console.log("My balance exercice 7 " + myBalance);
 
         /////// Exercice 8: Deposit And Mint ///////
-        await ExerciceSolution.setERC20DepositAddress(ExerciceSolutionToken.address);
         await Evaluator.ex8_depositAndMint();
         // Display balance
         myBalance = await TDToken.balanceOf(accounts[0]);
-	    console.log("My balance exercice 8 " + myBalance);
+        console.log("My balance exercice 8 " + myBalance);
 
         // Exercice 9
-        await Evaluator.ex9_withdrawAndBurn();
+        await ClaimableToken.approve(Evaluator.address, myBalance);
         await ExerciceSolutionToken.setBurner(ExerciceSolution.address, true);
+        await Evaluator.ex9_withdrawAndBurn();
         // Display balance
         myBalance = await TDToken.balanceOf(accounts[0]);
-	    console.log("My balance exercice 9 " + myBalance);
+        console.log("My balance exercice 9 " + myBalance);
     
     });
 };
