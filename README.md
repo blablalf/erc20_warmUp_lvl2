@@ -1,3 +1,8 @@
+# My answer to the challenge
+Was fun but the last question should pre-approve the allowance, it should not be my role to approve it without the user consent. Anyway the wallet with the 20pts is [0x08f6dDE16166F06e1d486749452dc3A44f175456](https://goerli.etherscan.io/address/0x08f6dDE16166F06e1d486749452dc3A44f175456) (see [balance](https://goerli.etherscan.io/token/0xb79a94500ee323f15d76ff963cce27ca3c9e32df?a=0x08f6dDE16166F06e1d486749452dc3A44f175456)).
+
+
+__
 # ERC20 102
 
 ## Introduction
