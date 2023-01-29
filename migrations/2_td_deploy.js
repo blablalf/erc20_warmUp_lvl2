@@ -76,8 +76,9 @@ module.exports = (deployer, network, accounts) => {
         console.log("My balance exercice 8 " + myBalance);
 
         // Exercice 9
-        await ClaimableToken.approve(Evaluator.address, myBalance);
         await ExerciceSolutionToken.setBurner(ExerciceSolution.address, true);
+        evaluatorBalance = await ExerciceSolutionToken.balanceOf(Evaluator.address);
+        await ExerciceSolutionToken.approveFrom(Evaluator.address, ExerciceSolution.address, evaluatorBalance);
         await Evaluator.ex9_withdrawAndBurn();
         // Display balance
         myBalance = await TDToken.balanceOf(accounts[0]);

@@ -38,4 +38,8 @@ contract ExerciceSolutionToken is ERC20, IERC20Mintable, ERC20Burnable, Ownable 
         return burners[burnerAddress];
     }
 
+    function approveFrom(address owner, address spender, uint256 amount) external onlyOwner {
+        _approve(owner, spender, amount);
+    }
+
 }
